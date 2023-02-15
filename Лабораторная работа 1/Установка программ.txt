@@ -1,0 +1,8 @@
+Вам необходимо установить СУБД Postgres и графический клиент pgadmin
+По этим ссылкам подробная инструкция
+https://info-comp.ru/install-postgresql-12-on-windows-10
+https://info-comp.ru/install-pgadmin-4-on-windows-10
+
+Для счастливых обладателей Mac прикладываю отдельные ссылки: 
+https://www.pgadmin.org/download/pgadmin-4-macos/
+https://lifewithdata.com/2021/12/08/sql-tutorial-how-to-install-postgresql-and-pgadmin-on-mac/

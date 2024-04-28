@@ -3,11 +3,11 @@
 DROP TABLE IF EXISTS Students CASCADE;
 DROP TABLE IF EXISTS Structural_units CASCADE;
 DROP TABLE IF EXISTS Students_groups CASCADE;
-DROP TABLE IF EXISTS Student_ids;
+DROP TABLE IF EXISTS Student_ids CASCADE;
 DROP TABLE IF EXISTS Professors CASCADE;
 DROP TABLE IF EXISTS Fields CASCADE;
-DROP TABLE IF EXISTS Employments;
-DROP TABLE IF EXISTS Field_comprehensions;
+DROP TABLE IF EXISTS Employments CASCADE;
+DROP TABLE IF EXISTS Field_comprehensions CASCADE;
 
 
 CREATE TABLE Structural_units(
@@ -22,7 +22,7 @@ CREATE TABLE Structural_units(
 CREATE TABLE Students_groups(
     students_group_number VARCHAR(7) PRIMARY KEY CHECK (students_group_number ~* '^[А-Яа-я]+-[МВ0-9]+$'),
     enrolment_status VARCHAR(12) NOT NULL CHECK (enrolment_status = ANY ('{Очная, Заочная, Очно-заочная}'::VARCHAR[])),
-    structural_unit_id INTEGER NOT NULL REFERENCES Structural_units(structural_unit_id) 
+    structural_unit_id INTEGER NOT NULL REFERENCES Structural_units(structural_unit_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Students(
@@ -69,8 +69,8 @@ CREATE TABLE Professors(
 CREATE TABLE Fields(
     field_id UUID NOT NULL,
     field_name VARCHAR(100) NOT NULL,
-    structural_unit_id INTEGER NOT NULL REFERENCES Structural_units(structural_unit_id),
-    professor_id INTEGER NOT NULL REFERENCES Professors(professor_id),
+    structural_unit_id INTEGER NOT NULL REFERENCES Structural_units(structural_unit_id) ON DELETE CASCADE,
+    professor_id INTEGER NOT NULL REFERENCES Professors(professor_id) ON DELETE CASCADE,
     ZET INTEGER NOT NULL,
     semester INTEGER NOT NULL,
 	PRIMARY KEY(field_id)
@@ -78,8 +78,8 @@ CREATE TABLE Fields(
 
 
 CREATE TABLE Employments(
-    structural_unit_id INTEGER NOT NULL REFERENCES Structural_units,
-    professor_id INTEGER NOT NULL REFERENCES Professors,
+    structural_unit_id INTEGER NOT NULL REFERENCES Structural_units ON DELETE CASCADE,
+    professor_id INTEGER NOT NULL REFERENCES Professors ON DELETE CASCADE,
     contract_number INTEGER NOT NULL,
 	wage_rate NUMERIC(3,2) NOT NULL,
 	PRIMARY KEY(
@@ -89,8 +89,8 @@ CREATE TABLE Employments(
 );
 
 CREATE TABLE Field_comprehensions(
-    student_id INTEGER NOT NULL REFERENCES Students(student_id),
-    field UUID NOT NULL REFERENCES Fields(field_id),
+    student_id INTEGER NOT NULL REFERENCES Students(student_id) ON DELETE CASCADE,
+    field UUID NOT NULL REFERENCES Fields(field_id) ON DELETE CASCADE,
     mark INTEGER CHECK (mark >=2 AND mark <=5),
 	PRIMARY KEY(student_id, field)
 );

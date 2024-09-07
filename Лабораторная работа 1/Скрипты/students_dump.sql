@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.17 (Ubuntu 12.17-0ubuntu0.20.04.1)
--- Dumped by pg_dump version 12.17 (Ubuntu 12.17-0ubuntu0.20.04.1)
+-- Dumped from database version 14.13 (Ubuntu 14.13-0ubuntu0.22.04.1)
+-- Dumped by pg_dump version 14.13 (Ubuntu 14.13-0ubuntu0.22.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -26629,7 +26629,7 @@ ALTER TABLE ONLY public.students
 --
 
 ALTER TABLE ONLY public.employments
-    ADD CONSTRAINT employments_professor_id_fkey FOREIGN KEY (professor_id) REFERENCES public.professors(professor_id);
+    ADD CONSTRAINT employments_professor_id_fkey FOREIGN KEY (professor_id) REFERENCES public.professors(professor_id) ON DELETE CASCADE;
 
 
 --
@@ -26637,7 +26637,7 @@ ALTER TABLE ONLY public.employments
 --
 
 ALTER TABLE ONLY public.employments
-    ADD CONSTRAINT employments_structural_unit_id_fkey FOREIGN KEY (structural_unit_id) REFERENCES public.structural_units(structural_unit_id);
+    ADD CONSTRAINT employments_structural_unit_id_fkey FOREIGN KEY (structural_unit_id) REFERENCES public.structural_units(structural_unit_id) ON DELETE CASCADE;
 
 
 --
@@ -26645,7 +26645,7 @@ ALTER TABLE ONLY public.employments
 --
 
 ALTER TABLE ONLY public.field_comprehensions
-    ADD CONSTRAINT field_comprehensions_field_fkey FOREIGN KEY (field) REFERENCES public.fields(field_id);
+    ADD CONSTRAINT field_comprehensions_field_fkey FOREIGN KEY (field) REFERENCES public.fields(field_id) ON DELETE CASCADE;
 
 
 --
@@ -26653,7 +26653,7 @@ ALTER TABLE ONLY public.field_comprehensions
 --
 
 ALTER TABLE ONLY public.field_comprehensions
-    ADD CONSTRAINT field_comprehensions_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.students(student_id);
+    ADD CONSTRAINT field_comprehensions_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.students(student_id) ON DELETE CASCADE;
 
 
 --
@@ -26661,7 +26661,7 @@ ALTER TABLE ONLY public.field_comprehensions
 --
 
 ALTER TABLE ONLY public.fields
-    ADD CONSTRAINT fields_professor_id_fkey FOREIGN KEY (professor_id) REFERENCES public.professors(professor_id);
+    ADD CONSTRAINT fields_professor_id_fkey FOREIGN KEY (professor_id) REFERENCES public.professors(professor_id) ON DELETE CASCADE;
 
 
 --
@@ -26669,7 +26669,7 @@ ALTER TABLE ONLY public.fields
 --
 
 ALTER TABLE ONLY public.fields
-    ADD CONSTRAINT fields_structural_unit_id_fkey FOREIGN KEY (structural_unit_id) REFERENCES public.structural_units(structural_unit_id);
+    ADD CONSTRAINT fields_structural_unit_id_fkey FOREIGN KEY (structural_unit_id) REFERENCES public.structural_units(structural_unit_id) ON DELETE CASCADE;
 
 
 --
@@ -26693,7 +26693,7 @@ ALTER TABLE ONLY public.students
 --
 
 ALTER TABLE ONLY public.students_groups
-    ADD CONSTRAINT students_groups_structural_unit_id_fkey FOREIGN KEY (structural_unit_id) REFERENCES public.structural_units(structural_unit_id);
+    ADD CONSTRAINT students_groups_structural_unit_id_fkey FOREIGN KEY (structural_unit_id) REFERENCES public.structural_units(structural_unit_id) ON DELETE CASCADE;
 
 
 --

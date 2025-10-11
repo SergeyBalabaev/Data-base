@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Diary</class>
+ <widget class="QWidget" name="Diary">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>727</width>
+    <height>584</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="search_line">
+       <property name="placeholderText">
+        <string>Введите название дисциплины...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="search_button">
+       <property name="text">
+        <string>Искать</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="NonClickableTableWidget" name="diary_table">
+     <property name="styleSheet">
+      <string notr="true">QTableWidget {
+    background-color: transparent;
+}
+
+/* Убираем стиль для нажатой ячейки */
+QTableWidget::item:pressed {
+    background-color: transparent;
+    border: none;
+}
+
+/* Убираем стиль для ячейки в фокусе (редактирование) */
+QTableWidget::item:focus {
+    background-color: transparent;
+    border: none;
+}
+</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>NonClickableTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>tables_stuff/nonclickabletablewidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>search_line</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>Diary</receiver>
+   <slot>textEdited()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>539</x>
+     <y>30</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>722</x>
+     <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>textEdited()</slot>
+ </slots>
+</ui>

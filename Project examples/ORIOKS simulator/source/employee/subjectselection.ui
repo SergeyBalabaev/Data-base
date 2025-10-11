@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SubjectSelection</class>
+ <widget class="QWidget" name="SubjectSelection">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>571</width>
+    <height>455</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>90</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Дисциплина:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="NonClickableTableWidget" name="tableWidget">
+     <property name="styleSheet">
+      <string notr="true">QTableWidget
+{
+    border: none; /* Remove border around the table */
+}
+
+QTableWidget QHeaderView::section
+{
+    background-color: #ebf4f9; /* Light blue background in column headers */
+    border: none; /* Remove border in column headers */
+}
+
+QTableWidget::item
+{
+    background-color: #ebf4f9;   
+    border-bottom: 1px solid white; /* Black horizontal borders between cells */
+    text-align: center;
+}
+
+QTableWidget::item:selected
+{
+    background-color: rgba(0, 0, 0, 50); /* Lighter background when a cell is selected */
+}
+
+QTableWidget::item:first
+{
+    border-left: none; /* Remove left border in the first cell of each row */
+}
+
+QTableWidget::item:last
+{
+    border-right: none; /* Remove right border in the last cell of each row */
+}
+</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Minimum</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>90</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>NonClickableTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>tables_stuff/nonclickabletablewidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

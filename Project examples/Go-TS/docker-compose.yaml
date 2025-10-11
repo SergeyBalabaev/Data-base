@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  backend:
+    image: backend:1
+    ports:
+      - 8080:8080
+    environment:
+      PG_NAME: foxgres
+      PG_USER: admin
+      PG_PASSWORD: admin
+      PG_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: foxgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-U", "admin" ]
+    ports:
+      - 5432:5432
+
+  migrate:
+    image: migrate:1
+    environment:
+      PGDATABASE: foxgres
+      PGUSER: admin
+      PGPASSWORD: admin
+      PGHOST: db
+      PGPORT: 5432
+    depends_on:
+      db:
+        condition: service_healthy
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    image: frontend:1
+    ports:
+      - 5173:5173
+    depends_on:
+      db:
+        condition: service_healthy

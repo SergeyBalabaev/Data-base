@@ -1,0 +1,106 @@
+definitions:
+  AccessLevel:
+    properties:
+      access_level:
+        type: integer
+    type: object
+  Marks:
+    properties:
+      marks:
+        additionalProperties:
+          type: integer
+        type: object
+      student:
+        $ref: '#/definitions/Student'
+    type: object
+  ResponseErr:
+    properties:
+      message:
+        type: string
+    type: object
+  Student:
+    properties:
+      group_number:
+        type: string
+      name:
+        type: string
+      patronymic:
+        type: string
+      surname:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Ориокс здорового человека
+  title: foxgres API
+  version: 0.1.0
+paths:
+  /auth:
+    get:
+      consumes:
+      - application/json
+      description: Поиск пользователя в таблице users
+      parameters:
+      - description: Логин
+        in: header
+        name: login
+        required: true
+        type: string
+      - description: Пароль
+        in: header
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/AccessLevel'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ResponseErr'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ResponseErr'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ResponseErr'
+      summary: authentication
+      tags:
+      - authentication
+  /marks:
+    get:
+      consumes:
+      - application/json
+      description: Получение оценок студента
+      parameters:
+      - description: Идентификатор студента
+        in: query
+        name: student_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Marks'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ResponseErr'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ResponseErr'
+      summary: get student marks
+      tags:
+      - students
+swagger: "2.0"

@@ -1,0 +1,3 @@
+[submodule "Проектное задание/Swift/swift-foxgres"]
+	path = Проектное задание/Swift/swift-foxgres
+	url = https://github.com/KeoFoxy/swift-foxgres.git
